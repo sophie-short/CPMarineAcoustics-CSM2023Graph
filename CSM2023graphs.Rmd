@@ -1,0 +1,42 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+
+```{r}
+library(tidyverse)
+library(readxl)
+ggplot(week1stats, aes(fill=vocalization, y=percent, x=day)) + geom_bar(position= "dodge", stat="identity") + theme_classic() + scale_fill_manual(labels= c("'Good' Vocalizations", "Rockfish", "Song Behavior"), values=c("coral1", "seagreen1", "deepskyblue1")) + labs(x="Deployment Day", y= "Percent of Files", fill="Call Type") + scale_x_continuous(breaks= seq(1, 8, 1))
+```
+```{r}
+library(tidyverse)
+library(readxl)
+ggplot(week1stats, aes(fill=vocalization, y=number, x=day)) + geom_bar(position='stack', stat='identity') + theme_classic() + scale_fill_manual(labels= c("'Good' Vocalizations", "Rockfish", "Song Behavior"), values=c("coral1", "seagreen1", "deepskyblue1")) + labs(x="Deployment Day", y= "Number of Files", fill="Call Type") + scale_x_continuous(breaks= seq(1, 8, 1)) + scale_y_continuous(breaks=seq(0, 120, 20))
+```
+```{r}
+library(tidyverse)
+ggplot(primarystatsMSG, aes(x=vocalization.type, y=number, fill=presence)) + geom_col(position=position_dodge()) + facet_wrap(~time, strip.position = "bottom") + theme_classic() + theme(strip.placement = "outside") + labs(x="Vocalization Type", y= "Number of Files", fill="presence/absence") + scale_x_discrete(labels=c("Rockfish", "Song Behvaior"))
+
+```
+```{r}
+library(tidyverse)
+ggplot(primarystatsMSG, aes(fill=presence, y=number, x=vocalization.type)) + geom_bar(position='stack', stat='identity') + theme_classic()+ facet_wrap(~time, strip.position = "bottom") + theme(strip.placement = "outside") + labs(x="Vocalization Type", y= "Number of Files", fill="presence/absence") + scale_x_discrete(labels=c("Rockfish", "Song Behvaior"))
+
+```
+```{r}
+library(tidyverse)
+library(ggplot2)
+ggplot(csmdeployment2, aes(fill=vocalization, y=percentage, x=day)) + geom_bar(position= "dodge", stat="identity", width=0.7) + scale_x_continuous(breaks= seq(1, 8, 1)) + labs(x="Day of Deployment", y= "Proportion of Files", fill="Call Type") + scale_fill_manual(labels= c("Non-Song", "Song", "Rockfish", "No Biotic Sound"), values=c("#56B4E9", "#009E73", "#F0E442", "#D55E00")) + theme(text=element_text(size=12, family="Verdana"))
+```
+```{r}
+library(tidyverse)
+library(ggplot2)
+ggplot(csmdaynight, aes(fill=time, y=percent, x=vocalization)) + geom_bar(position='stack', stat='identity', width=0.7) + labs(x="Call Type", y= "Proportion of Files", fill="Time of Day") + theme(text=element_text(size=12, family="Verdana")) + scale_x_discrete(labels=c("Non-Song Calls", "Rockfish", "Song Behavior")) + scale_fill_manual(labels=c("Day","Night"), values=c ("yellow1", "deepskyblue1")) + scale_x_discrete(labels=c("Song", "Non-Song", "Rockfish")) + scale_fill_manual(labels=c("Day","Night"), values=c ("#F0E442", "#56B4E9"))
+```
+
+
+
